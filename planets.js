@@ -1,8 +1,40 @@
+// B1
+var planetPromise= d3.json("planets.json");
+    planetPromise.then(
+    function(planetData){
+       step1(planetData);
+       step2(planetData);
+        console.log("works",planetData)}
+    function(err{
+        console.log("broke",err)
+        })
+//A1
+        
+var step1 = function(data){
+    var Names=["string1","string2","string3"]
+    var A1div= d3.select("#A1");
+    A1div.append("p") 
+        .text(Names)
+    }
 
-
-
-
-
+//A2
+var step2= function(data){
+    var A2div= d3.select("#A2");
+    A2div.append("p").text("mercury")
+    A2div.append("p").text("Venus")
+       A2div.append("p").text("earth")
+       A2div.append("p").text("mars")
+       A2div.append("p").text("Jupiter")
+       A2div.append("p").text("Saturn")
+       A2div.append("p").text("Uranus")
+       A2div.append("p").text("neptune")
+}
+ 
+//B3
+var drawPlanets= function(data){
+    var 
+}
+     
 
 /*
 var makePlanet = function(name,img,distance,radius,density,moons)
