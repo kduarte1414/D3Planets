@@ -1,13 +1,21 @@
 // B1
 var planetPromise= d3.json("planets.json");
-    planetPromise.then(
-    function(planetData){
+planetPromise.then(
+ function(planetData)
+    {
        step1(planetData);
        step2(planetData);
-        console.log("works",planetData)}
-    function(err{
+       drawPlanets(planetData);
+        list(planetData);
+        makeTable(planetData);
+        table2(planetData);
+        console.log("works",planetData)
+    },
+ function(err)
+    {
         console.log("broke",err)
-        })
+    }
+)
 //A1
         
 var step1 = function(data){
@@ -20,21 +28,70 @@ var step1 = function(data){
 //A2
 var step2= function(data){
     var A2div= d3.select("#A2");
-    A2div.append("p").text("mercury")
+    A2div.append("p").text("Mercury")
     A2div.append("p").text("Venus")
-       A2div.append("p").text("earth")
-       A2div.append("p").text("mars")
+       A2div.append("p").text("Earth")
+       A2div.append("p").text("Mars")
        A2div.append("p").text("Jupiter")
        A2div.append("p").text("Saturn")
        A2div.append("p").text("Uranus")
-       A2div.append("p").text("neptune")
+       A2div.append("p").text("Neptune")
 }
  
 //B3
-var drawPlanets= function(data){
-    var 
+var drawPlanets= function(data)
+{
+    var B3div= d3.select("#B3");
+    B3div.selectAll("img")
+    .data(data)
+    .enter()
+    .append("img")
+    .attr("src",function(planet)
+          {
+        return planet.img
+    })
+    
 }
-     
+    
+//B4 
+
+var list= function(data)
+{
+    var B4div=d3.select("#B4").append("ol");
+    B4div.selectAll("li")
+    .data(data)
+    .enter()
+    .append("li")
+    .text(function(planet)
+         {return planet.name})
+    
+}
+  
+
+
+//C1
+var makeTable= function(data)
+{
+    var C1div= d3.select("#C1").append("table");
+    C1div.selectAll("tr")
+    .data(data)
+    .enter()
+    .append("tr")
+    
+}
+
+//C2
+var table2= function(data)
+{
+    var C2= d3.select("#C2").append("table");
+    var tableRows= C2.selectAll("tr")
+    .data(data)
+    .enter()
+    .append("tr");
+    
+    tableRows.append("td").text(function(planet){return planet.name})
+    
+}
 
 /*
 var makePlanet = function(name,img,distance,radius,density,moons)
