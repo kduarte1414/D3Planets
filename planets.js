@@ -3,12 +3,14 @@ var planetPromise= d3.json("planets.json");
 planetPromise.then(
  function(planetData)
     {
-       step1(planetData);
-       step2(planetData);
-       drawPlanets(planetData);
+        step1(planetData);
+        step2(planetData);
+        drawPlanets(planetData);
         list(planetData);
         makeTable(planetData);
         table2(planetData);
+        table3(planetData);
+        extra(planetData);
         console.log("works",planetData)
     },
  function(err)
@@ -93,35 +95,25 @@ var table2= function(data)
     
 }
 
-/*
-var makePlanet = function(name,img,distance,radius,density,moons)
-{
-    return {name,img,distance,radius,density,moons};
+//C3 
+
+var table3= function(data)
+{ 
+var C3=d3.select("#C3").append("table");
+    var tableRows= C3.selectAll("tr")
+    .data(data)
+    .enter()
+    .append("tr");
+    
+ tableRows.append("td").text(function(planet){return planet.name})
+       
+ tableRows.append("td").text(function(planet){return planet.img})
+    
+ tableRows.append("td").text(function(planet){return planet.distance})
+ tableRows.append("td").text(function(planet){return planet.radius})
+ tableRows.append("td").text(function(planet) {return planet.density})
 }
-
-
-var planets = [
-makePlanet("Mercury","img/mercury.jpg",
-.38,.38,5.43,0),
-makePlanet("Venus","img/venus.jpg",
-.72,.94,5.24,0),
-makePlanet("Earth","img/earth.jpg",
-1,1,5.52,1),
-makePlanet("Mars","img/mars.jpg",
-1.52,.53,3.94,2),
-makePlanet("Jupiter","img/jupiter.jpg",
-5.2,11.21,1.33,79),
-makePlanet("Saturn","img/saturn.jpg",
-9.53,9.45,.7,62),
-makePlanet("Uranus","img/uranus.jpg",
-19.19,4.0,1.3,27),
-makePlanet("Neptune","img/neptune.jpg",
-30,3.88,1.76,14),
-];
-
-console.log(JSON.stringify(planets,null,2))
-
-*/
+               
 
 
 
